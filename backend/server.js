@@ -33,3 +33,6 @@ app.listen(PORT, () => {
 	connectDB();
 	console.log("Server is running on port: ", PORT);
 });
+
+//RkDmKS9Gby3esZoX
+//mongodb+srv://vasireddylokesh3_db_user:RkDmKS9Gby3esZoX@cluster0.isvisls.mongodb.net/?appName=Cluster0
