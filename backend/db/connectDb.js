@@ -3,11 +3,18 @@ import dotenv from "dotenv";
 dotenv.config();
 export const connectDB = async () => {
 	try {
-		console.log("mongo_uri: ", process.env.MONGO_URI);
+		if (!process.env.MONGO_URI) {
+			throw new Error("MONGO_URI is undefined");
+		}
+
 		const conn = await mongoose.connect(process.env.MONGO_URI);
 		console.log(`MongoDB Connected: ${conn.connection.host}`);
 	} catch (error) {
-		console.log("Error connection to MongoDB: ", error.message);
-		process.exit(1); // 1 is failure, 0 status code is success
+		if (error instanceof Error) {
+			console.error("Error connecting to MongoDB:", error.message);
+		} else {
+			console.error("Unknown error:", error);
+		}
+		process.exit(1);
 	}
 };
